@@ -1,3 +1,129 @@
 # Written by roadmap.py from GitHub; do not edit.
 as_of: 2026-11-06
-objectives: []
+objectives:
+- id: O1
+  title: Make astropy.units.Quantity a modern part of the Python array ecosystem by supporting any array-API-compliant backend
+  issue: 1
+  rank: 1
+  key_results:
+  - id: KR1.1
+    title: A new Quantity class (in a fork of astropy) supports any array-API-compliant array and passes astropy.units tests modified to test NumPy, JAX, and array-api-strict arrays
+    issue: 9
+  - id: KR1.2
+    title: With a backward-compatibility layer in place, the existing test suites of astropy core and all coordinated packages pass with no new failures against the new Quantity
+    issue: 10
+  - id: KR1.3
+    title: The new Quantity class is reviewed and merged into the main branch of the core astropy package
+    issue: 11
+- id: O2
+  title: Identify ways in which we can ensure the wellbeing of our community in the age of LLMs
+  issue: 2
+  rank: 2
+  key_results:
+  - id: KR2.1
+    title: A survey is carried out that assesses how maintainers and contributors feel about LLM usage, what impact it has on them, and solicits ideas for any changes
+    issue: 12
+  - id: KR2.2
+    title: Based on the results from this survey, a report is published on the astropy-dev mailing list summarizing the findings and suggesting a strategy going forward
+    issue: 13
+  - id: KR2.3
+    title: Every action item in the report from KR2.2 has a named owner
+    issue: 14
+- id: O3
+  title: Identify and address single points of failure throughout the infrastructure of the Astropy ecosystem
+  issue: 3
+  rank: 3
+  key_results:
+  - id: KR3.1
+    title: An audit is carried out, accessible to the CoCo and SPOC, listing every piece of project infrastructure and which people or roles operate each one
+    issue: 15
+    description: Infrastructure pieces should include but not be limited to domains, PyPI ownership, GitHub org owners, and password vaults
+  - id: KR3.2
+    title: Every item in the KR3.1 audit which does not have at least two people who can operate it has an open issue tracking the need to have more people assigned to it
+    issue: 16
+  - id: KR3.3
+    title: Every item in the KR3.1 audit has at least two people who can operate it
+    issue: 17
+- id: O4
+  title: Create a process to identify and ensure progress on longstanding issues that should be high priority
+  issue: 4
+  rank: 4
+  key_results:
+  - id: KR4.1
+    title: A new label common to all Astropy repositories is created to identify the highest priority issues as determined by maintainers along with guidelines in the astropy documentation on how to use this label
+    issue: 18
+  - id: KR4.2
+    title: Maintainers of every coordinated package and astropy sub-package have labelled the highest priority issues, with at least one and at most three in each coordinated package and each astropy sub-package
+    issue: 19
+  - id: KR4.3
+    title: A project board exists to collect all of the highest priority issues in the project in a single place
+    issue: 20
+  - id: KR4.4
+    title: The Cycle 7 funding allocations include prioritization for projects that address one or more of these high priority issues
+    issue: 21
+- id: O5
+  title: Improve the sustainability and maintenance of coordinated and affiliated packages
+  issue: 5
+  rank: 5
+  key_results:
+  - id: KR5.1
+    title: A dashboard exists to show automated health metrics for coordinated and affiliated packages
+    issue: 22
+    description: This should include at least compatibility with other Astropy and Scientific Python ecosystem packages, time since last release, number of maintainers who have merged PRs in the last year, and time to respond on issues and merge/close PRs.
+  - id: KR5.2
+    title: Criteria are published for automatically determining when a package needs help with maintenance
+    issue: 23
+  - id: KR5.3
+    title: An issue is opened on the astropy-project repo for every package failing the criteria, in order to discuss a plan to help improve maintenance and sustainability
+    issue: 24
+  - id: KR5.4
+    title: At least three (or all, if fewer) packages have an agreed plan discussed in the issue for improving maintenance or retiring the package
+    issue: 25
+- id: O6
+  title: Identify the barriers to making Astropy work easily in cloud contexts
+  issue: 6
+  rank: 6
+  key_results:
+  - id: KR6.1
+    title: Issues in core and coordinated packages that relate specifically to cloud computing are identified and tagged with a common 'cloud' label
+    issue: 26
+  - id: KR6.2
+    title: A survey is conducted to identify cloud users and solicit feedback about issues encountered by users in cloud contexts
+    issue: 27
+  - id: KR6.3
+    title: A list of significant astropy cloud users (e.g. observatories, organizations) who agree to be listed is compiled following the results of the survey
+    issue: 28
+  - id: KR6.4
+    title: Every barrier identified in KR6.2 has an issue opened and labelled in the relevant repository
+    issue: 29
+- id: O7
+  title: Improve and maintain interoperability with performant I/O file formats and libraries
+  issue: 7
+  rank: 7
+  key_results:
+  - id: KR7.1
+    title: Benchmarks in astropy-benchmarks measure time and peak memory for reading and writing full files and for reading subsets of data, at small and large (≥1 GB) file sizes, for tabular and raster data formats
+    issue: 30
+    description: The tabular formats tested should be FITS, HDF5, VOTable, Parquet, VO-Parquet and ASDF, and the raster data format tested should be FITS (including tile-compressed images).
+  - id: KR7.2
+    title: Equivalent reference benchmarks exist for other Python libraries where relevant (e.g. fitsio, h5py, pyarrow, asdf), and tracking issues (one per format) list every case where astropy is more than 2x worse in time or peak memory
+    issue: 31
+  - id: KR7.3
+    title: At least five of the cases in the KR7.2 tracking issues (or all, if fewer than five) are brought within 2x of the reference benchmark through work on Astropy ecosystem packages
+    issue: 32
+- id: O8
+  title: Provide support for reading and writing spectra using the IVOA SpectrumDM in specutils
+  issue: 8
+  rank: 8
+  key_results:
+  - id: KR8.1
+    title: Specutils can read in SpectrumDM-compatible VOTables, demonstrated with at least one spectrum from each of two archives, and these files are included in the specutils test suite
+    issue: 33
+    description: The spectra tested should be a Euclid Q1 spectrum from IRSA and a Gaia DR3 XP spectrum from the GAVO Data Center
+  - id: KR8.2
+    title: Specutils can write a Spectrum object to a SpectrumDM VOTable, which passes astropy's VOTable validator and contains all fields that SpectrumDM marks as mandatory
+    issue: 34
+    description: If required metadata is missing, a clear error lists the missing fields.
+  - id: KR8.3
+    title: Reading and writing as in KR8.1 and KR8.2 is also supported for the SpectrumDM FITS serialization (including validation), demonstrated with at least one archive-provided file
+    issue: 35
