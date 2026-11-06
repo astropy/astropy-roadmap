@@ -1,0 +1,12 @@
+# Monthly updates for the GitHub Actions used by the workflows, which are pinned
+# to commit hashes; all of them come in a single pull request.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - "*"
