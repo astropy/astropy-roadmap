@@ -41,7 +41,7 @@ jobs:
         run: gh api --method PUT "repos/$GH_REPO/actions/workflows/roadmap.yml/enable"
       # Always check out main, so that re-running an old run starts from the
       # current snapshot rather than the commit the run was first started on.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
       - run: pip install ruamel.yaml jinja2
@@ -86,7 +86,7 @@ jobs:
             fi
             echo "The roadmap issues or project board changed; see the diff of roadmap.yaml."
           } > body.md
-      - uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           branch: roadmap-snapshot
           add-paths: roadmap.yaml
