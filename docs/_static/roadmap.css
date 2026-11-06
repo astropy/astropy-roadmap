@@ -1,0 +1,21 @@
+/* Status notes written by roadmap.py at the end of objective and key result lines. */
+.completed {
+  color: var(--pst-color-success);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.not-planned {
+  color: var(--pst-color-text-muted);
+  white-space: nowrap;
+}
+
+/* Issue descriptions shown under key results, as extra detail rather than part of the key result. */
+.kr-description {
+  font-style: italic;
+}
+
+/* A description makes its list a non-compact one; keep the spacing the same as a compact list. */
+.kr-description > :last-child {
+  margin-bottom: 0;
+}

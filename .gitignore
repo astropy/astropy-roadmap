@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Roadmap drafts and their editor lock files
+.~lock.*#
+*.odt
+*.docx
