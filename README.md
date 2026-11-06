@@ -23,8 +23,8 @@ To add an objective:
 
 1. Open an issue titled `O<n>: <objective>`, using the next unused number.
 2. Add the `objective` label.
-3. Add it to the project board and drag it to its rank. Objectives not on the board are
-   listed as unranked.
+3. Add it to the project board and drag it to its rank. Every open objective must be on
+   the board.
 
 To add a key result:
 
@@ -49,9 +49,10 @@ description later, so check the diff of `roadmap.yaml` before merging. Warnings 
 that are allowed but look like mistakes (an issue with an identifier but no label, a
 skipped number, an objective with no planned key results) are listed in the pull request.
 If the issues are inconsistent (a labelled issue's title has no identifier, a key result
-is not a sub-issue of an objective or its identifier does not match that objective, or an
-identifier is used twice), no pull request is opened; the problems are reported in a
-"Roadmap snapshot failed" issue instead, which the next successful run closes.
+is not a sub-issue of an objective or its identifier does not match that objective, an
+identifier is used twice, or an open objective is not on the board), no pull request is
+opened; the problems are reported in a "Roadmap snapshot failed" issue instead, which the
+next successful run closes.
 
 The wording of the page around the objectives, such as the introduction, is in
 `text.yaml`, and is changed by pull request.

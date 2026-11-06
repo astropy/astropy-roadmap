@@ -20,7 +20,7 @@
 {% set planned = obj.key_results | rejectattr("not_planned", "defined") | list %}
 ### {{ obj.id }}: {{ obj.title }}
 
-*{% if "rank" in obj %}Rank {{ obj.rank }} of {{ n_ranked }} · {% elif "completed" not in obj and "not_planned" not in obj %}Unranked · {% endif %}
+*{% if "rank" in obj %}Rank {{ obj.rank }} of {{ open_objectives | length }} · {% endif %}
 Tracking issue: {{ link(obj) }} · {{ planned | selectattr("completed", "defined") | list | length }} of {{ planned | length }} key results complete{{ status(obj) }}*
 
 {% for kr in obj.key_results %}
@@ -37,7 +37,7 @@ Tracking issue: {{ link(obj) }} · {{ planned | selectattr("completed", "defined
 {% endmacro %}
 ## Objectives
 
-Open objectives are listed in order of priority, as ranked on the [roadmap project board]({{ project }}), followed by any unranked objectives.
+Open objectives are listed in order of priority, as ranked on the [roadmap project board]({{ project }}).
 
 {% for obj in open_objectives %}{{ objective(obj) }}{% endfor %}
 {% if completed %}

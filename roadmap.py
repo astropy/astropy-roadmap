@@ -11,9 +11,8 @@ its issue description, if any, is shown under it.
 Identifiers are never renumbered or reused. An issue closed as completed marks
 its entry done, and one closed for any other reason marks it not planned; both
 stay in the roadmap as a record. An issue opened by mistake is taken out of the
-roadmap by removing its label. Open objectives on the project board set in
-PROJECT are ranked by their order there; open objectives not on the board are
-unranked.
+roadmap by removing its label. Open objectives are ranked by their order on
+the project board set in PROJECT, and every open objective must be on it.
 
 Running this script writes all of this to the YAML snapshot in SNAPSHOT,
 leaving the file alone if nothing has changed. It exits without writing if the
@@ -232,16 +231,20 @@ def build_roadmap(issues, board):
         if len(numbers) > 1:
             errors.append(f"{identifier} is used by more than one issue: {', '.join(numbers)}")
 
-    # At this point, any issues above are fatal, we cannot proceed
-    if errors:
-        raise SystemExit("\n".join(errors))
-
-    # Open objectives on the board are ranked in board order; the rest are unranked.
+    # Every open objective must be on the board, which ranks them
     position = {url: index for index, url in enumerate(board)}
     ranked_urls = []
     for url, objective in objectives_by_url.items():
-        if is_open(objective) and url in position:
+        if not is_open(objective):
+            continue
+        if url in position:
             ranked_urls.append(url)
+        else:
+            errors.append(f"{url}: {objective['id']} is open but not on the project board")
+
+    # At this point, any issues above are fatal, we cannot proceed
+    if errors:
+        raise SystemExit("\n".join(errors))
 
     ranked_urls.sort(key=lambda url: position[url])
 
@@ -338,10 +341,8 @@ def render():
     )
     snapshot = load(SNAPSHOT)
 
-    # Open objectives are listed with the ranked ones first, in rank order, and the
-    # unranked ones after them in identifier order.
-    ranked = []
-    unranked = []
+    # Open objectives are listed in rank order.
+    open_objectives = []
     completed = []
     not_planned = []
 
@@ -350,12 +351,10 @@ def render():
             completed.append(objective)
         elif "not_planned" in objective:
             not_planned.append(objective)
-        elif "rank" in objective:
-            ranked.append(objective)
         else:
-            unranked.append(objective)
+            open_objectives.append(objective)
 
-    ranked.sort(key=lambda objective: objective["rank"])
+    open_objectives.sort(key=lambda objective: objective["rank"])
 
     template = env.get_template("roadmap.md")
 
@@ -364,10 +363,9 @@ def render():
         repository=REPOSITORY,
         project=PROJECT,
         text=load(TEXT),
-        open_objectives=ranked + unranked,
+        open_objectives=open_objectives,
         completed=completed,
         not_planned=not_planned,
-        n_ranked=len(ranked),
     )
 
 
