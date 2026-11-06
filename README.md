@@ -34,7 +34,8 @@ To add a key result:
 3. Make it a sub-issue of its objective.
 
 Details that would make a key result's title too long can go in its issue description,
-which is shown under it, in italics, on the page.
+which is shown under it, in italics, on the page. Status updates and links to related work
+belong in comments on the issue, which are not published.
 
 Close an issue as completed when its entry is done, and as not planned when it no longer
 applies; a not-planned entry stays in the roadmap, marked as such, as a record. An issue
@@ -42,13 +43,15 @@ opened by mistake is taken out of the roadmap by removing its label.
 
 Every Monday, and whenever it is run by hand from the Actions tab, a workflow records the
 issues and the board ranking in `roadmap.yaml` and opens a pull request with the changes.
-Merging it updates the published page. Warnings for things that are allowed but look like
-mistakes (an issue with an identifier but no label, a skipped number, an objective with no
-planned key results) are listed in the pull request. If the issues are inconsistent (a
-labelled issue's title has no identifier, a key result is not a sub-issue of an objective
-or its identifier does not match that objective, or an identifier is used twice), no pull
-request is opened; the problems are reported in a "Roadmap snapshot failed" issue instead,
-which the next successful run closes.
+Merging it updates the published page. Titles and key result descriptions are published as
+written, including any HTML or Sphinx markup, and anyone who opened an issue can edit its
+description later, so check the diff of `roadmap.yaml` before merging. Warnings for things
+that are allowed but look like mistakes (an issue with an identifier but no label, a
+skipped number, an objective with no planned key results) are listed in the pull request.
+If the issues are inconsistent (a labelled issue's title has no identifier, a key result
+is not a sub-issue of an objective or its identifier does not match that objective, or an
+identifier is used twice), no pull request is opened; the problems are reported in a
+"Roadmap snapshot failed" issue instead, which the next successful run closes.
 
 The wording of the page around the objectives, such as the introduction, is in
 `text.yaml`, and is changed by pull request.

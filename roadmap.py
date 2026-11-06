@@ -18,9 +18,10 @@ unranked.
 Running this script writes all of this to the YAML snapshot in SNAPSHOT,
 leaving the file alone if nothing has changed. It exits without writing if the
 issues are inconsistent, and prints a warning for anything that is allowed but
-probably a mistake. ``gh`` must be authenticated with the ``read:project``
-scope. The documentation build in ``docs/`` calls ``render``, which returns the
-markdown page from the snapshot and the page wording in TEXT.
+probably a mistake. ``gh`` must be authenticated with a token that can read
+the issues and the project board. The documentation build in ``docs/`` calls
+``render``, which returns the markdown page from the snapshot and the page
+wording in TEXT.
 """
 
 import datetime

@@ -12,6 +12,10 @@
 # requests" must be enabled. The default token cannot read project boards, so
 # the pull step uses the ROADMAP_TOKEN secret, a personal access token that can
 # read the issues and the board; README.md describes how to create it.
+#
+# GitHub turns off scheduled workflows in a public repository after 60 days
+# without commits, which would happen whenever the roadmap does not change for
+# that long. Each run therefore re-enables this workflow, which resets the count.
 name: Roadmap
 
 on:
@@ -23,6 +27,7 @@ jobs:
   pull:
     runs-on: ubuntu-latest
     permissions:
+      actions: write
       contents: write
       issues: write
       pull-requests: write
@@ -30,7 +35,15 @@ jobs:
       GH_REPO: ${{ github.repository }}
       FAILURE_TITLE: Roadmap snapshot failed
     steps:
-      - uses: actions/checkout@v4
+      - name: Keep the weekly schedule from being turned off
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/$GH_REPO/actions/workflows/roadmap.yml/enable"
+      # Always check out main, so that re-running an old run starts from the
+      # current snapshot rather than the commit the run was first started on.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: main
       - run: pip install ruamel.yaml jinja2
       - run: python roadmap.py 2>&1 | tee pull.log
         shell: bash
@@ -73,7 +86,7 @@ jobs:
             fi
             echo "The roadmap issues or project board changed; see the diff of roadmap.yaml."
           } > body.md
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
         with:
           branch: roadmap-snapshot
           add-paths: roadmap.yaml
