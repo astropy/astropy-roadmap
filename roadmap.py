@@ -361,7 +361,6 @@ def render():
     return template.render(
         as_of=snapshot["as_of"],
         repository=REPOSITORY,
-        project=PROJECT,
         text=load(TEXT),
         open_objectives=open_objectives,
         completed=completed,

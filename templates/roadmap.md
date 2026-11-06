@@ -4,7 +4,7 @@
 
 *Last updated {{ as_of }}*
 
-{% for section in text.sections %}
+{% for section in text.before_objectives %}
 ## {{ section.title }}
 
 {{ section.text | trim }}
@@ -37,7 +37,7 @@ Tracking issue: {{ link(obj) }} · {{ planned | selectattr("completed", "defined
 {% endmacro %}
 ## Objectives
 
-Open objectives are listed in order of priority, as ranked on the [roadmap project board]({{ project }}).
+Open objectives are listed in order of priority.
 
 {% for obj in open_objectives %}{{ objective(obj) }}{% endfor %}
 {% if completed %}
@@ -50,4 +50,10 @@ Open objectives are listed in order of priority, as ranked on the [roadmap proje
 
 {% for obj in not_planned %}{{ objective(obj) }}{% endfor %}
 {% endif %}
+{% for section in text.after_objectives %}
+## {{ section.title }}
+
+{{ section.text | trim }}
+
+{% endfor %}
 *{{ text.footer }}*

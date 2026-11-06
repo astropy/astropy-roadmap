@@ -61,7 +61,8 @@ The wording of the page around the objectives, such as the introduction, is in
 
 `python roadmap.py` reads the issues and the board through the GitHub GraphQL API, using
 `gh`, and writes `roadmap.yaml`. The repository and board it reads are set at the top of
-`roadmap.py`. The documentation build calls `roadmap.render()`, which combines
+`roadmap.py`; the section at the end of the page in `text.yaml` links to both, so update
+it too if either changes. The documentation build calls `roadmap.render()`, which combines
 `roadmap.yaml`, `text.yaml` and `templates/roadmap.md` into the page; nothing generated is
 committed. Running `make html` in `docs/` builds the page locally, without GitHub access.
 
