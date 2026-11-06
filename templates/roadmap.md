@@ -37,7 +37,7 @@ Tracking issue: {{ link(obj) }} · {{ planned | selectattr("completed", "defined
 {% endmacro %}
 ## Objectives
 
-Open objectives are listed in order of priority.
+{{ text.objectives_intro | trim }}
 
 {% for obj in open_objectives %}{{ objective(obj) }}{% endfor %}
 {% if completed %}

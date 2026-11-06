@@ -20,6 +20,8 @@ before_objectives:
 
     Key results and objectives are marked as completed once they have been achieved, and completed objectives are listed after the open ones. An objective or key result that no longer applies is marked as not planned and kept on this page as a record.
 
+objectives_intro: Open objectives are listed in order of priority.
+
 after_objectives:
 - title: Where this roadmap is maintained
   text: |
