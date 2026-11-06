@@ -16,11 +16,9 @@ before_objectives:
 
     Every objective has an identifier such as `O3` and every key result has an identifier such as `KR3.2`. Identifiers are stable: once assigned they are never renumbered or reused, so they can be cited in funding requests, issues, and pull requests without ambiguity.
 
-    Open objectives are ranked by the SPOC, with rank 1 the highest priority, and are listed in rank order. The rank reflects how important the SPOC considers it that progress is made before the roadmap is next revisited, independent of whether anyone is currently working on it.
-
     Key results and objectives are marked as completed once they have been achieved, and completed objectives are listed after the open ones. An objective or key result that no longer applies is marked as not planned and kept on this page as a record.
 
-objectives_intro: Open objectives are listed in order of priority.
+objectives_intro: Open objectives are listed in order of priority, with highest priority objectives first. This priority reflects how important it is that progress is made before the roadmap is next revisited, independent of whether anyone is currently working on it.
 
 after_objectives:
 - title: Where this roadmap is maintained
